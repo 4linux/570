@@ -20,6 +20,11 @@
         shell: /bin/bash
         password : $1$QbUARykG$p2nthVG8AkDvabKPHwboa1
 
+    - name: Clona repositório com os arquivos do curso para a HOME do usuario suporte-gcp
+      git:
+        repo: 'https://github.com/4linux/570.git'
+        dest: /home/suporte-gcp/570
+    
     - name: Adicionar usuarios ao grupo wheel
       lineinfile:
         path: /etc/sudoers
