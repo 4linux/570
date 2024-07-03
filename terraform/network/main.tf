@@ -257,7 +257,7 @@ resource "google_compute_firewall" "observability_network_allow_ssh" {
 
 resource "null_resource" "delay" {
   provisioner "local-exec" {
-    command = "sleep 30"
+    command = "sleep 60"
   }
 }
 
