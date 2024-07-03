@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db-server:
+    image: "mysql:5.7"
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "Abc123"
+      MYSQL_DATABASE: php
+      MYSQL_USER: php
+      MYSQL_PASSWORD: 4linux
+    ports:
+      - "3306:3306"
+    volumes:
+      - "/opt/data:/var/lib/mysql"
+  cadvisor:
+    container_name: cadvisor
+    image: gcr.io/cadvisor/cadvisor:latest
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes: 
+      - "/:/rootfs"
+      - "/var/run:/var/run"
+      - "/sys:/sys"
+      - "/var/lib/docker/:/var/lib/docker"
+      - "/dev/disk/:/dev/disk"
+    privileged: true
+    devices:
+      - "/dev/kmsg"

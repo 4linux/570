@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db-server:
+    image: "mysql:5.7"
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "Abc123"
+      MYSQL_DATABASE: php
+      MYSQL_USER: php
+      MYSQL_PASSWORD: 4linux
+    ports:
+      - "3306:3306"
+    volumes:
+      - "/570/sql/:/opt"
+      - "/opt/data:/var/lib/mysql"
+  import-sql:
+    image: "mysql:5.7"
+    restart: unless-stopped
+    depends_on:
+      - "db-server"  
+    environment:
+      MYSQL_ROOT_PASSWORD: "Abc123"
+      MYSQL_DATABASE: php
+      MYSQL_USER: php
+      MYSQL_PASSWORD: 4linux
+    volumes:
+      - "/570/sql/:/opt"
+      - "/opt/data:/var/lib/mysql"
+    entrypoint: ["sh", "-c", "sleep 30 && mysql -h db-server -uroot -pAbc123 < /opt/dump.sql"] 
