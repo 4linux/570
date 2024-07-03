@@ -67,7 +67,7 @@ resource "google_compute_firewall" "app_network_allow_internal" {
     protocol = "icmp"
   }
 
-  source_ranges = ["10.1.0.0/24"]
+  source_ranges = ["10.1.0.0/24", "10.2.0.0/24", "10.3.0.0/24"]
   direction     = "INGRESS"
   priority      = 65534
 }
