@@ -33,6 +33,6 @@ services:
     restart: unless-stopped
     command:
      - "--mysqld.username=php:4linux"
-     - "--mysqld.address=localhost:3306"
+     - "--mysqld.address=db-server:3306"
     ports:
       - "9104:9104"
