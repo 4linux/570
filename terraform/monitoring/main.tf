@@ -97,6 +97,15 @@ resource "google_compute_instance" "zabbix_db" {
     access_config {}
   }
 
+  metadata = {
+    startup-script = <<-EOF
+      #! /bin/bash
+
+      # Clonar repositorio do curso
+      git clone https://github.com/4linux/570.git
+
+    EOF
+  }
 }
 
 resource "google_compute_instance" "zabbix_server" {
@@ -124,6 +133,15 @@ resource "google_compute_instance" "zabbix_server" {
     access_config {
       nat_ip = google_compute_address.zabbix_server_static_ip.address
     }
+
+  metadata = {
+    startup-script = <<-EOF
+      #! /bin/bash
+
+      # Clonar repositorio do curso
+      git clone https://github.com/4linux/570.git
+
+    EOF
   }
 }
 
@@ -152,5 +170,14 @@ resource "google_compute_instance" "prometheus_server" {
     access_config {
       nat_ip = google_compute_address.prometheus_server_static_ip.address
     }
+
+  metadata = {
+    startup-script = <<-EOF
+      #! /bin/bash
+
+      # Clonar repositorio do curso
+      git clone https://github.com/4linux/570.git
+
+    EOF
   }
 }
