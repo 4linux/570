@@ -8,6 +8,6 @@ receivers:
   - name: 'slack-notifications'
     slack_configs:
     - api_url: 'COLE_AQUI_O_Webhook_URL_DO_SLACK'
-      channel: '#prometheus-alerts'
+      channel: '#prometheus-notifications'
       send_resolved: true
 
