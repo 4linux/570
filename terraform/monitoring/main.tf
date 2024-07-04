@@ -43,6 +43,19 @@ resource "google_compute_firewall" "allow_prometheus_server" {
   target_tags   = ["prometheus-server"]
 }
 
+resource "google_compute_firewall" "allow_alertmanager" {
+  name    = "allow-alertmanager"
+  network = "monitoring-network"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["9093"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["alertmanager"]
+}
+
 resource "google_compute_address" "zabbix_db_internal_ip" {
   name         = "zabbix-db-internal-ip"
   region       = "us-central1"
@@ -146,7 +159,7 @@ resource "google_compute_instance" "prometheus_server" {
   name         = "prometheus-server"
   machine_type = "e2-standard-2"
   zone         = "us-central1-c"
-  tags         = ["prometheus-server", "grafana-server"]
+  tags         = ["grafana-server", "prometheus-server", "alertmanager"]
 
   boot_disk {
     initialize_params {
