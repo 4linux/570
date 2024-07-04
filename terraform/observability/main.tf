@@ -72,13 +72,21 @@ resource "google_compute_instance" "graylog_server" {
     network = "observability-network"
     subnetwork = "observability-subnet"
 
+    alias_ip_range {
+      ip_cidr_range = google_compute_address.graylog_server_internal_ip.address
+    }
+
     access_config {
       nat_ip = google_compute_address.graylog_server_static_ip.address
     }
 
-    alias_ip_range {
-      ip_cidr_range = google_compute_address.graylog_server_internal_ip.address
-    }
+  metadata = {
+    startup-script = <<-EOF
+      #! /bin/bash
+
+      # Clonar repositorio do curso
+      git clone https://github.com/4linux/570.git
+    EOF
   }
 }
 
@@ -100,12 +108,20 @@ resource "google_compute_instance" "elk_server" {
     network = "observability-network"
     subnetwork = "observability-subnet"
 
+    alias_ip_range {
+      ip_cidr_range = google_compute_address.elk_server_internal_ip.address
+    }
+
     access_config {
       nat_ip = google_compute_address.elk_server_static_ip.address
     }
 
-    alias_ip_range {
-      ip_cidr_range = google_compute_address.elk_server_internal_ip.address
-    }
+  metadata = {
+    startup-script = <<-EOF
+      #! /bin/bash
+
+      # Clonar repositorio do curso
+      git clone https://github.com/4linux/570.git
+    EOF
   }
 }
