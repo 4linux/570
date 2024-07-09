@@ -1,0 +1,9 @@
+metrics:
+  receivers:
+    apache:
+      type: apache
+  service:
+    pipelines:
+      apache:
+        receivers:
+          - apache 

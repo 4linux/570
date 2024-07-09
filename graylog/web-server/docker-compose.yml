@@ -18,6 +18,7 @@ services:
     volumes:
       - "/570/config/php.ini:/usr/local/etc/php/php.ini"
       - "/570/config/server-status.conf:/etc/apache2/conf-enabled/server-status.conf"       
+#       - "/var/log:/var/log"
   cadvisor:
     container_name: cadvisor
     image: gcr.io/cadvisor/cadvisor:latest

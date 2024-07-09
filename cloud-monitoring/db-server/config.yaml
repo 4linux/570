@@ -1,0 +1,12 @@
+metrics:
+  receivers:
+    mysql:
+      type: mysql
+      endpoint: localhost:3306
+      username: root
+      password: Abc123
+  service:
+    pipelines:
+      mysql:
+        receivers:
+        - mysql 

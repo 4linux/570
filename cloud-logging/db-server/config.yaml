@@ -1,0 +1,27 @@
+metrics:
+  receivers:
+    mysql:
+      type: mysql
+      endpoint: localhost:3306
+      username: root
+      password: Abc123
+  service:
+    pipelines:
+      mysql:
+        receivers:
+        - mysql 
+logging:
+  receivers:
+    mysql_error:
+      type: mysql_error
+    mysql_general:
+      type: mysql_general
+    mysql_slow:
+      type: mysql_slow
+  service:
+    pipelines:
+      mysql:
+        receivers:
+          - mysql_error
+          - mysql_general
+          - mysql_slow 

@@ -1,0 +1,9 @@
+metrics:
+  receivers:
+    memcached:
+      type: memcached
+  service:
+    pipelines:
+      memcached:
+        receivers:
+          - memcached
