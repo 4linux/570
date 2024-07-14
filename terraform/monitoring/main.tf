@@ -108,6 +108,7 @@ resource "google_compute_instance" "zabbix_db" {
       ip_cidr_range = google_compute_address.zabbix_db_internal_ip.address
     }
     access_config {}
+  }
 
   metadata = {
     startup-script = <<-EOF
@@ -144,6 +145,7 @@ resource "google_compute_instance" "zabbix_server" {
     access_config {
       nat_ip = google_compute_address.zabbix_server_static_ip.address
     }
+  }
 
   metadata = {
     startup-script = <<-EOF
@@ -180,6 +182,7 @@ resource "google_compute_instance" "prometheus_server" {
     access_config {
       nat_ip = google_compute_address.prometheus_server_static_ip.address
     }
+  }
 
   metadata = {
     startup-script = <<-EOF
@@ -187,7 +190,6 @@ resource "google_compute_instance" "prometheus_server" {
 
       # Clonar repositorio do curso
       git clone https://github.com/4linux/570.git
-
     EOF
   }
 }

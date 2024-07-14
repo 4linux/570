@@ -69,7 +69,7 @@ resource "google_compute_instance" "graylog_server" {
   }
 
   network_interface {
-    network = "observability-network"
+    network    = "observability-network"
     subnetwork = "observability-subnet"
 
     alias_ip_range {
@@ -79,6 +79,7 @@ resource "google_compute_instance" "graylog_server" {
     access_config {
       nat_ip = google_compute_address.graylog_server_static_ip.address
     }
+  }
 
   metadata = {
     startup-script = <<-EOF
@@ -105,7 +106,7 @@ resource "google_compute_instance" "elk_server" {
   }
 
   network_interface {
-    network = "observability-network"
+    network    = "observability-network"
     subnetwork = "observability-subnet"
 
     alias_ip_range {
@@ -115,6 +116,7 @@ resource "google_compute_instance" "elk_server" {
     access_config {
       nat_ip = google_compute_address.elk_server_static_ip.address
     }
+  }
 
   metadata = {
     startup-script = <<-EOF
